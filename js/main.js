@@ -25,7 +25,7 @@ function PasteLink(entry){
 }
 
 function main(argc,argv){
-	wget('/ngrok/ngrok.json',function(res){
+	wget('/ngrok.json',function(res){
 		var json = JSON.parse(res);
 		if(json && json.data){
 			for(var i=0; i<json.data.length; ++i){
