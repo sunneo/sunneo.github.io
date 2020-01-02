@@ -18,16 +18,24 @@ function wget(_url,_callback){
 }
 
 function PasteLink(entry){
+	if(!placeHolder.ul){
+		var ul = $('<ul>');
+		placeHolder.append(ul);
+		placeHolder.ul = ul;
+	}
+	var li = $('<li>');
 	var a=$('<a>');
 	a.text(entry.name);
 	if(entry.url.indexOf('http') < 0){
 		entry.url='http://'+entry.url;
 	}
 	a.attr('href',entry.url);
-	placeHolder.append(a);
+	li.append(a);
+	placeHolder.ul.append(li);
 }
 
 function main(argc,argv){
+
 	wget('/ngrok.json',function(res){
 		var json = JSON.parse(res);
 		if(json && json.data){
