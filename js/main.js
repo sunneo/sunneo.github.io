@@ -16,7 +16,7 @@ function wget(_url,_callback){
 		}
 	});
 }
-
+map=[];
 function PasteLink(entry){
 	if(!placeHolder.ul){
 		var ul = $('<ul>');
@@ -25,6 +25,7 @@ function PasteLink(entry){
 	}
 	var li = $('<li>');
 	var a=$('<a>');
+	if(map[entry.name]) return false;
 	a.text(entry.name);
 	if(entry.url.indexOf('http') < 0){
 		entry.url='http://'+entry.url;
@@ -32,6 +33,7 @@ function PasteLink(entry){
 	a.attr('href',entry.url);
 	li.append(a);
 	placeHolder.ul.append(li);
+	map[entry.name]=entry;
 }
 
 function main(argc,argv){
