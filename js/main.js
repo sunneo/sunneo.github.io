@@ -25,6 +25,9 @@ function PasteLink(entry,sublink){
 	}
 	var li = $('<li>');
 	var a=$('<a>');
+	if(sublink){
+	   entry.name+=sublink;
+	}
 	if(map[entry.name]) return false;
 	a.text(entry.name);
 	if(entry.url.indexOf('http') < 0){
