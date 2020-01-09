@@ -17,7 +17,7 @@ function wget(_url,_callback){
 	});
 }
 map=[];
-function PasteLink(entry,sublink){
+function PasteLink(entry,sublink,replacename){
 	if(!placeHolder.ul){
 		var ul = $('<ul>');
 		placeHolder.append(ul);
@@ -27,6 +27,8 @@ function PasteLink(entry,sublink){
 	var a=$('<a>');
 	if(sublink){
 	   entry.name+=sublink;
+           if(replacename)
+		entry.name=replacename;
 	}
 	if(map[entry.name]) return false;
 	a.text(entry.name);
@@ -49,10 +51,13 @@ function main(argc,argv){
 		var json = JSON.parse(res);
 		if(json && json.data){
 			for(var i=0; i<json.data.length; ++i){
-			   PasteLink(json.data[i]);
 			   if(json.data[i].name.endsWith('-80')){
-				   PasteLink(json.data[i],'/ytdownload.html');
-			   }
+				   PasteLink(json.data[i],'/ytdownload.html','Youtube To MP3');
+				   PasteLink(json.data[i],'/MarkNote/index.php','MarkNote');
+
+			   } else {
+				   PasteLink(json.data[i]);
+		           }
 			}
 		}
 	});
