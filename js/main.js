@@ -32,10 +32,11 @@ function PasteLink(entry,sublink){
 	a.text(entry.name);
 	if(entry.url.indexOf('http') < 0){
 		entry.url='http://'+entry.url;
-		if(sublink){
-			entry.url='http://'+entry.url+sublink;
-		}
 	}
+	if(sublink){
+		entry.url=entry.url+sublink;
+	}
+
 	a.attr('href',entry.url);
 	li.append(a);
 	placeHolder.ul.append(li);
