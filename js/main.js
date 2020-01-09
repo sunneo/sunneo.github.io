@@ -17,7 +17,7 @@ function wget(_url,_callback){
 	});
 }
 map=[];
-function PasteLink(entry){
+function PasteLink(entry,sublink){
 	if(!placeHolder.ul){
 		var ul = $('<ul>');
 		placeHolder.append(ul);
@@ -29,6 +29,9 @@ function PasteLink(entry){
 	a.text(entry.name);
 	if(entry.url.indexOf('http') < 0){
 		entry.url='http://'+entry.url;
+		if(sublink){
+			entry.url='http://'+entry.url+sublink;
+		}
 	}
 	a.attr('href',entry.url);
 	li.append(a);
@@ -43,6 +46,9 @@ function main(argc,argv){
 		if(json && json.data){
 			for(var i=0; i<json.data.length; ++i){
 			   PasteLink(json.data[i]);
+			   if(json.data[i].name.endsWith('-80')){
+				   PasteLink(json.data[i],'/ytdownload.html');
+			   }
 			}
 		}
 	});
