@@ -32,14 +32,15 @@ function PasteLink(entry,sublink,replacename){
 	}
 	if(map[entry.name]) return false;
 	a.text(entry.name);
-	if(entry.url.indexOf('http') < 0){
-		entry.url='http://'+entry.url;
+	var addlink=entry.url;
+	if(addlink.indexOf('http') < 0){
+		addlink='http://'+addlink;
 	}
 	if(sublink){
-		entry.url=entry.url+sublink;
+		addlink=addlink+sublink;
 	}
 
-	a.attr('href',entry.url);
+	a.attr('href',addlink);
 	li.append(a);
 	placeHolder.ul.append(li);
 	map[entry.name]=entry;
