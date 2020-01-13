@@ -54,8 +54,6 @@ function main(argc,argv){
 			for(var i=0; i<json.data.length; ++i){
 			   if(json.data[i].name.endsWith('-80')){
 				   PasteLink(json.data[i],'/ytdownload.html','Youtube To MP3');
-				   PasteLink(json.data[i],'/MarkNote/index.php','MarkNote');
-
 			   } else {
 				   PasteLink(json.data[i]);
 		           }
